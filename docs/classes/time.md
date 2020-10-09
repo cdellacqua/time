@@ -100,7 +100,7 @@ Constructs a Time object
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`str` | string | a string representation of a Time HH:MM:SS or HH:MM  |
+`str` | string | a string representation of a Time (-)HH:MM:SS or (-)HH:MM  |
 
 **Returns:** *[Time](time.md)*
 
@@ -128,15 +128,13 @@ ___
 
 • **_sign**: *number* = 1
 
-+1 or -1
-
 ___
 
 ### `Static` `Readonly` regex
 
 ▪ **regex**: *RegExp‹›* = /^(-?)(\d\d):(\d\d)(:(\d\d))?$/
 
-regex for format HH:MM:SS or -HH:MM:SS
+regex for format (-)HH:MM:SS or (-)HH:MM
 
 ## Accessors
 
@@ -150,13 +148,13 @@ Gets the hours (0-23) of the current Time instance
 
 • **set h**(`v`: number): *void*
 
-Sets the hours (0-23) of the current Time instance
+Sets the hour (0-23) of the current Time instance
 
 **Parameters:**
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`v` | number | an integer, if it exceeds the valid representation, it will overflow without (for example 25 becomes 1)  |
+`v` | number | an integer, if it exceeds the valid representation, it will overflow (for example 25 becomes 1)  |
 
 **Returns:** *void*
 
@@ -198,7 +196,7 @@ Sets the minutes (0-59) of the current Time instance
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`v` | number | an integer, if it exceeds the valid representation, it will overflow without (for example 60 becomes 1)  |
+`v` | number | an integer, if it exceeds the valid representation, it will overflow (for example 60 becomes 0)  |
 
 **Returns:** *void*
 
@@ -220,7 +218,7 @@ Sets the seconds (0-59) of the current Time instance
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`v` | number | an integer, if it exceeds the valid representation, it will overflow without (for example 60 becomes 1)  |
+`v` | number | an integer, if it exceeds the valid representation, it will overflow (for example 60 becomes 0)  |
 
 **Returns:** *void*
 

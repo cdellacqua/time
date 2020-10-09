@@ -1,6 +1,6 @@
 {
 	"name": "@cdellacqua/time",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Custom error class that supports JSON serialization and concatenation",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
@@ -9,7 +9,7 @@
 		"coverage": "jest --coverage",
 		"build": "rimraf build && tsc",
 		"doc": "rimraf docs && typedoc --disableSources --readme none --mode file --readme none --plugin typedoc-plugin-markdown src/index.ts",
-		"prepare": "npm run build",
+		"prepare": "npm run build && npm run doc",
 		"prepublishOnly": "npm test"
 	},
 	"keywords": [
