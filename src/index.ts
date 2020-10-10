@@ -1,7 +1,7 @@
 import { SerializableError } from '@cdellacqua/serializable-error';
 
 /**
- * Time class, supports positive and negative times
+ * Time class, supports positive and negative times (from -23:59:59 to 00:00:00)
  */
 export class Time {
 	/**
@@ -193,8 +193,15 @@ export class Time {
 	 * @param date the reference Date the year, month and date will be extracted from
 	 */
 	toDate(date: Date): Date;
+	/**
+	 * Returns a new Date object with the time of day set according to this instance
+	 */
+	toDate(): Date;
 
-	toDate(dateOrYear: number|Date, month?: number, date?: number): Date {
+	toDate(dateOrYear?: number|Date, month?: number, date?: number): Date {
+		if (!dateOrYear) {
+			return this.toDate(new Date());
+		}
 		const native = typeof dateOrYear === "number"
 			? new Date(dateOrYear, month!, date!)
 			: new Date(dateOrYear.getFullYear(), dateOrYear.getMonth(), dateOrYear.getDate());
@@ -266,6 +273,17 @@ export class Time {
 	 */
 	toJSON(): string {
 		return this.toString();
+	}
+
+	/**
+	 * Returns a string representing the current time using the native toLocaleTimeString of the Date type.
+	 * Warning: if the time is negative, the locale string will represent a positive time because of the undeflow
+	 * behaviour of the conversion to a Date object
+	 * @param locales an array of locales or a specific locale
+	 * @param options the Intl.DateFormatOptions object
+	 */
+	toLocaleString(locales?: string[]|string, options?: Intl.DateTimeFormatOptions): string {
+		return this.toDate().toLocaleTimeString(locales, options);
 	}
 
 	/**
