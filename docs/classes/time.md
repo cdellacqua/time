@@ -2,7 +2,7 @@
 
 # Class: Time
 
-Time class, supports positive and negative times
+Time class, supports positive and negative times (from -23:59:59 to 00:00:00)
 
 ## Hierarchy
 
@@ -41,6 +41,7 @@ Time class, supports positive and negative times
 * [sub](time.md#sub)
 * [toDate](time.md#todate)
 * [toJSON](time.md#tojson)
+* [toLocaleString](time.md#tolocalestring)
 * [toString](time.md#tostring)
 * [compare](time.md#static-compare)
 * [equals](time.md#static-equals)
@@ -358,6 +359,12 @@ Name | Type | Description |
 
 **Returns:** *Date*
 
+▸ **toDate**(): *Date*
+
+Returns a new Date object with the time of day set according to this instance
+
+**Returns:** *Date*
+
 ___
 
 ###  toJSON
@@ -365,6 +372,25 @@ ___
 ▸ **toJSON**(): *string*
 
 Returns a string representation for the current instance
+
+**Returns:** *string*
+
+___
+
+###  toLocaleString
+
+▸ **toLocaleString**(`locales?`: string[] | string, `options?`: Intl.DateTimeFormatOptions): *string*
+
+Returns a string representing the current time using the native toLocaleTimeString of the Date type.
+Warning: if the time is negative, the locale string will represent a positive time because of the undeflow
+behaviour of the conversion to a Date object
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`locales?` | string[] &#124; string | an array of locales or a specific locale |
+`options?` | Intl.DateTimeFormatOptions | the Intl.DateFormatOptions object  |
 
 **Returns:** *string*
 
