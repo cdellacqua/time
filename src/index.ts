@@ -1,5 +1,3 @@
-import { SerializableError } from '@cdellacqua/serializable-error';
-
 /**
  * Time class, supports positive and negative times (from -23:59:59 to 00:00:00)
  */
@@ -70,7 +68,7 @@ export class Time {
 		if (s === 1 || s === -1) {
 			this._sign = s;
 		} else {
-			throw new SerializableError('sign must be 1 or -1');
+			throw new Error('sign must be 1 or -1');
 		}
 	}
 
@@ -117,7 +115,7 @@ export class Time {
 			const matches = secondsOrSignOrDate.match(Time.regex);
 
 			if (!matches) {
-				throw new SerializableError(`invalid time format ${secondsOrSignOrDate}`);
+				throw new Error(`invalid time format ${secondsOrSignOrDate}`);
 			}
 
 			this.sign = matches[1] === '-' ? -1 : 1,
