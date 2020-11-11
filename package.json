@@ -1,7 +1,7 @@
 {
 	"name": "@cdellacqua/time",
 	"version": "1.0.3",
-	"description": "Custom error class that supports JSON serialization and concatenation",
+	"description": "A Time class for JavaScript",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
 	"scripts": {
