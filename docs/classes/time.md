@@ -2,7 +2,7 @@
 
 # Class: Time
 
-Time class, supports positive and negative times (from -23:59:59 to 00:00:00)
+Time class that supports the range 00:00:00 - 23:59:59
 
 ## Hierarchy
 
@@ -19,17 +19,13 @@ Time class, supports positive and negative times (from -23:59:59 to 00:00:00)
 * [_h](time.md#_h)
 * [_m](time.md#_m)
 * [_s](time.md#_s)
-* [_sign](time.md#_sign)
 * [regex](time.md#static-readonly-regex)
 
 ### Accessors
 
 * [h](time.md#h)
-* [isNegative](time.md#isnegative)
-* [isPositive](time.md#ispositive)
 * [m](time.md#m)
 * [s](time.md#s)
-* [sign](time.md#sign)
 * [totalSeconds](time.md#totalseconds)
 
 ### Methods
@@ -54,7 +50,7 @@ Time class, supports positive and negative times (from -23:59:59 to 00:00:00)
 
 ###  constructor
 
-\+ **new Time**(`sign`: number, `h`: number, `m`: number, `s?`: undefined | number): *[Time](time.md)*
+\+ **new Time**(`h`: number, `m`: number, `s?`: undefined | number): *[Time](time.md)*
 
 Constructs a Time object
 
@@ -62,7 +58,6 @@ Constructs a Time object
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`sign` | number | +1 or -1 |
 `h` | number | hours |
 `m` | number | minutes |
 `s?` | undefined &#124; number | seconds  |
@@ -101,7 +96,7 @@ Constructs a Time object
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`str` | string | a string representation of a Time (-)HH:MM:SS or (-)HH:MM  |
+`str` | string | a string representation of a Time HH:MM:SS or HH:MM  |
 
 **Returns:** *[Time](time.md)*
 
@@ -125,17 +120,11 @@ ___
 
 ___
 
-###  _sign
-
-• **_sign**: *number* = 1
-
-___
-
 ### `Static` `Readonly` regex
 
-▪ **regex**: *RegExp‹›* = /^(-?)(\d\d):(\d\d)(:(\d\d))?$/
+▪ **regex**: *RegExp‹›* = /^(\d\d):(\d\d)(:(\d\d))?$/
 
-regex for format (-)HH:MM:SS or (-)HH:MM
+regex for format HH:MM:SS or HH:MM
 
 ## Accessors
 
@@ -158,26 +147,6 @@ Name | Type | Description |
 `v` | number | an integer, if it exceeds the valid representation, it will overflow (for example 25 becomes 1)  |
 
 **Returns:** *void*
-
-___
-
-###  isNegative
-
-• **get isNegative**(): *boolean*
-
-Returns true if the sign is -1, false otherwise
-
-**Returns:** *boolean*
-
-___
-
-###  isPositive
-
-• **get isPositive**(): *boolean*
-
-Returns true if the sign is 1, false otherwise
-
-**Returns:** *boolean*
 
 ___
 
@@ -225,33 +194,11 @@ Name | Type | Description |
 
 ___
 
-###  sign
-
-• **get sign**(): *number*
-
-Gets the sign (1 or -1) of the current Time instance
-
-**Returns:** *number*
-
-• **set sign**(`s`: number): *void*
-
-Sets the sign (1 or -1) of the current Time instance
-
-**Parameters:**
-
-Name | Type | Description |
------- | ------ | ------ |
-`s` | number | +1 or -1  |
-
-**Returns:** *void*
-
-___
-
 ###  totalSeconds
 
 • **get totalSeconds**(): *number*
 
-Returns an integer representation (including the sign) of the current instance
+Returns an integer representation of the current instance
 
 **Returns:** *number*
 
@@ -319,7 +266,7 @@ ___
 
 ▸ **sub**(`that`: [Time](time.md) | string): *[Time](time.md)*
 
-Subtracts a Time to the current instance, returning a new Time
+Subtracts a Time to the current instance, returning a new Time. If the difference yields a negative result, the absolute value is considered
 
 **Parameters:**
 
@@ -382,8 +329,6 @@ ___
 ▸ **toLocaleString**(`locales?`: string[] | string, `options?`: Intl.DateTimeFormatOptions): *string*
 
 Returns a string representing the current time using the native toLocaleTimeString of the Date type.
-Warning: if the time is negative, the locale string will represent a positive time because of the undeflow
-behaviour of the conversion to a Date object
 
 **Parameters:**
 
