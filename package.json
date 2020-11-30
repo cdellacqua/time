@@ -1,6 +1,6 @@
 {
 	"name": "@cdellacqua/time",
-	"version": "1.0.4",
+	"version": "2.0.0",
 	"description": "A Time class for JavaScript",
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
