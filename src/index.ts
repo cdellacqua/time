@@ -67,7 +67,7 @@ export class Time {
 	 * @param m minutes
 	 * @param s seconds
 	 */
-	constructor(h: number, m: number, s?: number);
+	constructor(h?: number, m?: number, s?: number);
 	/**
 	 * Constructs a Time object
 	 * @param s integer representation of a Time (new Time(s).totalSeconds === s)
@@ -83,42 +83,42 @@ export class Time {
 	 * @param str a string representation of a Time HH:MM:SS or HH:MM
 	 */
 	constructor(str: string);
-	constructor(secondsOrDate?: number|Date|string, h?: number, m?: number, s?: number) {
-		if (secondsOrDate === undefined || secondsOrDate === null) {
+	constructor(secondsOrDateOrHours?: number|Date|string, m?: number, s?: number) {
+		if (secondsOrDateOrHours === undefined || secondsOrDateOrHours === null) {
 			const ref = new Date();
 			this._h = ref.getHours();
 			this._m = ref.getMinutes();
 			this._s = ref.getSeconds();
-		} else if (secondsOrDate instanceof Date) {
-			const ref = secondsOrDate;
+		} else if (secondsOrDateOrHours instanceof Date) {
+			const ref = secondsOrDateOrHours;
 			this._h = ref.getHours();
 			this._m = ref.getMinutes();
 			this._s = ref.getSeconds();
-		} else if (typeof secondsOrDate === 'string') {
-			const matches = secondsOrDate.match(Time.regex);
+		} else if (typeof secondsOrDateOrHours === 'string') {
+			const matches = secondsOrDateOrHours.match(Time.regex);
 
 			if (!matches) {
-				throw new Error(`invalid time format ${secondsOrDate}`);
+				throw new Error(`invalid time format ${secondsOrDateOrHours}`);
 			}
 
 			this._h = 0;
 			this._m = 0;
 			this._s = 0;
-			this.s += Number(matches[5] ?? 0);
-			this.m += Number(matches[3]);
-			this.h += Number(matches[2]);
-		} else if (h === undefined) {
+			this.s += Number(matches[4] ?? 0);
+			this.m += Number(matches[2]);
+			this.h += Number(matches[1]);
+		} else if (m === undefined) {
 			this._h = 0;
 			this._m = 0;
 			this._s = 0;
-			this.s += secondsOrDate;
+			this.s += secondsOrDateOrHours;
 		} else {
 			this._h = 0;
 			this._m = 0;
 			this._s = 0;
 			this.s += s || 0;
 			this.m += m || 0;
-			this.h += h || 0;
+			this.h += secondsOrDateOrHours || 0;
 		}
 	}
 
