@@ -50,7 +50,7 @@ Time class that supports the range 00:00:00 - 23:59:59
 
 ###  constructor
 
-\+ **new Time**(`h`: number, `m`: number, `s?`: undefined | number): *[Time](time.md)*
+\+ **new Time**(`h?`: undefined | number, `m?`: undefined | number, `s?`: undefined | number): *[Time](time.md)*
 
 Constructs a Time object
 
@@ -58,8 +58,8 @@ Constructs a Time object
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`h` | number | hours |
-`m` | number | minutes |
+`h?` | undefined &#124; number | hours |
+`m?` | undefined &#124; number | minutes |
 `s?` | undefined &#124; number | seconds  |
 
 **Returns:** *[Time](time.md)*
