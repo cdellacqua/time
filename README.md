@@ -2,6 +2,11 @@
 
 A Time class for JavaScript
 
+
+[NPM Package](https://www.npmjs.com/package/@cdellacqua/time)
+
+`npm install @cdellacqua/time`
+
 ## Full documentation:
 * [Time](https://github.com/cdellacqua/time/blob/master/docs/classes/time.md)
 
